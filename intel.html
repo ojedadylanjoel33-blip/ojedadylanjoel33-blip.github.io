@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Te amo con todo mi corazón 💗</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap');
+
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: "Poppins", sans-serif;
+      font-weight: 600;
+      letter-spacing: 1px;
+      overflow: hidden;
+      position: relative;
+      background-color: #ffc1e3;
+      background-image:
+        radial-gradient(circle at 10% 20%, rgba(255,255,255,0.6) 0%, transparent 20%),
+        radial-gradient(circle at 80% 30%, rgba(255,255,255,0.4) 0%, transparent 25%),
+        radial-gradient(circle at 50% 80%, rgba(255,255,255,0.5) 0%, transparent 20%),
+        repeating-linear-gradient(45deg, rgba(255,255,255,0.1) 0, rgba(255,255,255,0.1) 10px, transparent 10px, transparent 20px);
+      background-size: cover;
+    }
+
+    .emoji {
+      position: absolute;
+      top: -5%;
+      font-size: 2rem;
+      opacity: 0.6;
+      animation: caer linear infinite;
+    }
+
+    @keyframes caer {
+      0% { transform: translateY(0) rotate(0deg); opacity: 0.8; }
+      100% { transform: translateY(110vh) rotate(360deg); opacity: 0.3; }
+    }
+
+    .content {
+      position: relative;
+      z-index: 10;
+      text-align: center;
+    }
+
+    button {
+      background-color: white;
+      color: #ff009d;
+      border: none;
+      padding: 18px 30px;
+      font-size: 1.4rem;
+      font-family: "Poppins", sans-serif;
+      font-weight: 600;
+      border-radius: 20px;
+      cursor: pointer;
+      box-shadow: 0 0 15px rgba(255, 0, 150, 0.4);
+      transition: all 0.3s ease;
+    }
+
+    button:hover {
+      transform: scale(1.1);
+      background-color: #ffe6f6;
+    }
+
+    h1 {
+      font-size: 2.6rem;
+      color: white;
+      text-shadow: 0 0 15px #ff6bda;
+      display: none;
+      position: relative;
+    }
+
+    h1 span.i {
+      position: relative;
+      display: inline-block;
+    }
+
+    h1 span.i::after {
+      content: "💗";
+      position: absolute;
+      top: -0.8em;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 0.6em;
+    }
+
+    /* Ocultar el reproductor */
+    audio {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <!-- Música de fondo -->
+  <audio id="musica" autoplay loop>
+    <source src="WhatsApp Audio 2025-10-21 at 5.18.53 PM.mpeg" type="audio/mpeg">
+    Tu navegador no soporta audio HTML5.
+  </audio>
+
+  <div class="content">
+    <button id="boton">Tócame 💖</button>
+    <h1 id="mensaje">
+      Te amo con todo m<span class="i">i</span> coraz<span class="i">ó</span>n 💗✨
+    </h1>
+  </div>
+
+  <script>
+    const musica = document.getElementById("musica");
+    musica.volume = 0.25;
+
+    // Intentar reproducir automáticamente
+    window.addEventListener("load", () => {
+      musica.play().catch(() => {
+        console.log("Autoplay bloqueado. Se reproducirá al tocar el botón.");
+      });
+    });
+
+    const emojis = ["💗", "✨"];
+    const cantidad = 45;
+
+    for (let i = 0; i < cantidad; i++) {
+      const emoji = document.createElement("div");
+      emoji.classList.add("emoji");
+      emoji.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+      emoji.style.left = Math.random() * 100 + "vw";
+      emoji.style.animationDuration = (5 + Math.random() * 6) + "s";
+      emoji.style.animationDelay = Math.random() * 5 + "s";
+      emoji.style.fontSize = (1.3 + Math.random() * 2.5) + "rem";
+      document.body.appendChild(emoji);
+    }
+
+    const boton = document.getElementById("boton");
+    const mensaje = document.getElementById("mensaje");
+
+    boton.addEventListener("click", () => {
+      boton.style.display = "none";
+      mensaje.style.display = "block";
+      musica.play();
+    });
+  </script>
+</body>
+</html>
